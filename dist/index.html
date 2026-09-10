@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Happy Birthday Neha Didi ❤️ | A Magical Surprise Story</title>
+  <meta name="description" content="A high-end, cinematic, interactive digital birthday surprise story dedicated to my elder sister Neha Didi. Created with love by her brother.">
+  <meta name="theme-color" content="#0d0714">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Mukta:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Rozha+One&display=swap" rel="stylesheet">
+
+  <script type="module" crossorigin src="/assets/index-B9xyDfYT.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-C89esLCf.css">
+</head>
+<body>
+
+  <!-- BACKGROUND AMBIENT CANVAS (Particles, Orbs, Sparkles, Translucent Hearts) -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <!-- LOADING SCREEN PRELOADER -->
+  <div id="loader-screen" class="loader-screen">
+    <div class="loader-content">
+      <div class="loader-heart-wrapper">
+        <span class="loader-heart">❤️</span>
+        <div class="loader-pulse-ring"></div>
+        <div class="loader-pulse-ring delay"></div>
+      </div>
+      <h2 class="loader-title">Creating something special for Neha… ❤️</h2>
+      <p class="loader-sub">Preparing a magical story just for you</p>
+      <div class="loader-bar-bg">
+        <div id="loader-bar-fill" class="loader-bar-fill"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOATING MUSIC PLAYER -->
+  <div id="audio-player" class="audio-player">
+    <button id="audio-toggle-btn" class="audio-toggle-btn" aria-label="Toggle Music">
+      <span class="audio-icon" id="audio-icon">🎵</span>
+      <span class="audio-text" id="audio-text">Play Music</span>
+      <div class="sound-waves" id="sound-waves">
+        <span class="wave bar-1"></span>
+        <span class="wave bar-2"></span>
+        <span class="wave bar-3"></span>
+        <span class="wave bar-4"></span>
+      </div>
+    </button>
+  </div>
+
+  <!-- FLOATING MINIMAL NAVIGATION BAR -->
+  <nav id="floating-nav" class="floating-nav hidden">
+    <div class="nav-container">
+      <button class="nav-btn active" data-target="section-envelope" title="Home">
+        <span class="nav-icon">💌</span>
+        <span class="nav-label">Home</span>
+      </button>
+      <button class="nav-btn" data-target="section-story" title="Story">
+        <span class="nav-icon">✨</span>
+        <span class="nav-label">Story</span>
+      </button>
+      <button class="nav-btn" data-target="section-memories" title="Memories">
+        <span class="nav-icon">📸</span>
+        <span class="nav-label">Memories</span>
+      </button>
+      <button class="nav-btn" data-target="section-timeline" title="Moments">
+        <span class="nav-icon">🌙</span>
+        <span class="nav-label">Moments</span>
+      </button>
+      <button class="nav-btn" data-target="section-special" title="Special">
+        <span class="nav-icon">🌸</span>
+        <span class="nav-label">Special</span>
+      </button>
+      <button class="nav-btn" data-target="section-wishes" title="Wishes">
+        <span class="nav-icon">🌠</span>
+        <span class="nav-label">Wishes</span>
+      </button>
+      <button class="nav-btn" data-target="section-final" title="Celebration">
+        <span class="nav-icon">🎂</span>
+        <span class="nav-label">Finale</span>
+      </button>
+    </div>
+    <div class="nav-progress-bar" id="nav-progress-bar"></div>
+  </nav>
+
+  <!-- MAIN EXPERIENCE CONTAINER -->
+  <main id="main-content" class="main-content">
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 1: THE MYSTERIOUS 3D ENVELOPE OPENING -->
+    <!-- ========================================== -->
+    <section id="section-envelope" class="section-envelope">
+      <div class="spotlight-glow"></div>
+
+      <!-- DYNAMICALLY FLOATING SCATTERED REAL PHOTOS AROUND ENVELOPE -->
+      <div id="envelope-scattered-photos" class="envelope-scattered-photos">
+        <!-- Floating polaroids rendered dynamically from real photos -->
+      </div>
+      
+      <div class="envelope-scene-header fade-in-element">
+        <span class="tag-badge">SPECIAL SURPRISE</span>
+        <h1 class="envelope-top-text">A little surprise is waiting for you…</h1>
+      </div>
+
+      <!-- 3D ENVELOPE CONTAINER -->
+      <div id="envelope-wrapper" class="envelope-wrapper">
+        <div id="envelope-3d" class="envelope-3d">
+          
+          <!-- Back Interior shadow/paper -->
+          <div class="env-back"></div>
+          
+          <!-- Inside warm glow source -->
+          <div id="env-inside-glow" class="env-inside-glow"></div>
+
+          <!-- RISING ELEGANT IVORY LETTER INSIDE ENVELOPE -->
+          <div id="envelope-letter" class="envelope-letter">
+            <div class="letter-inner">
+              <div class="letter-header-decor">
+                <span class="gold-sparkle">✨</span>
+                <span class="letter-date" id="letter-date-text">विशेषांक • वाढदिवस</span>
+                <span class="gold-sparkle">✨</span>
+              </div>
+              <h2 id="letter-greeting" class="letter-greeting">प्रिय नेहा ताई, ❤️</h2>
+              <div id="letter-body" class="letter-body">
+                <!-- Marathi paragraphs rendered dynamically line-by-line -->
+              </div>
+
+              <div class="letter-footer">
+                <button id="letter-next-btn" class="letter-next-btn hidden">
+                  <span>पुढे चला ❤️</span>
+                  <div class="btn-glow-layer"></div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Envelope Side Flaps -->
+          <div class="env-flap-left"></div>
+          <div class="env-flap-right"></div>
+          <div class="env-flap-bottom"></div>
+
+          <!-- Envelope Top Flap (3D Rotating) -->
+          <div id="env-top-flap" class="env-top-flap">
+            <div class="flap-triangle"></div>
+          </div>
+
+          <!-- WAX SEAL HEART BUTTON -->
+          <div id="envelope-seal" class="envelope-seal" role="button" aria-label="Open Envelope">
+            <div class="seal-wax-ring"></div>
+            <div class="seal-heart-icon">❤️</div>
+            <div class="seal-ripple"></div>
+          </div>
+
+          <!-- ENVELOPE FRONT LABEL TEXT -->
+          <div class="envelope-front-label">
+            <span class="label-to">For</span>
+            <span class="label-name" id="envelope-name-text">Neha Didi ❤️</span>
+          </div>
+
+          <!-- Floating Interactive Hint -->
+          <div id="seal-hint" class="seal-hint">
+            <span class="hint-sparkle">✨</span> Tap the heart seal to open <span class="hint-sparkle">✨</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="envelope-scene-footer fade-in-element">
+        <p class="envelope-bottom-text">Open it to discover something special ❤️</p>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 2: STORY INTRO & REAL HERO PORTRAIT -->
+    <!-- ========================================== -->
+    <section id="section-story" class="section-story hidden-chapter">
+      <div class="chapter-container">
+        
+        <!-- HERO CINEMATIC REAL PHOTO PORTRAIT FRAME -->
+        <div class="hero-portrait-wrapper">
+          <div class="hero-bg-blur">
+            <img id="hero-bg-img" src="" alt="Neha Didi Hero Blur Background" />
+          </div>
+          <div class="hero-portrait-frame glass-panel clickable-photo">
+            <img id="hero-portrait-img" src="" alt="Neha Didi Hero Portrait" />
+            <div class="hero-portrait-badge">
+              <span class="gold-star">👑</span> Neha Didi <span class="gold-star">👑</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="story-card glass-panel" id="story-intro-card">
+          <span class="chapter-number">CHAPTER 02</span>
+          <h2 class="story-headline" id="story-line-1">हा फक्त एक birthday message नाही…</h2>
+          <p class="story-subheadline" id="story-line-2">ही तुझ्यासाठी तयार केलेली एक छोटीशी आठवण आहे. ❤️</p>
+          <div class="divider-line"><span>🌸</span></div>
+          <p class="story-callout" id="story-line-3">आता काही खास आठवणी पाहूया…</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHAPTER 3: PHOTO MEMORY GALLERY SECTION -->
+    <section id="section-memories" class="section-memories hidden-chapter">
+      <div class="section-header">
+        <span class="section-badge">MEMORIES & MOMENTS</span>
+        <h2 class="section-title">आपल्या सुंदर आठवणी 📸</h2>
+        <p class="section-subtitle">Click or tap any memory photo to view full screen ❤️</p>
+      </div>
+
+      <!-- EDITORIAL DYNAMIC MASONRY GALLERY WITH REAL PHOTOS -->
+      <div id="photo-gallery" class="photo-gallery-grid">
+        <!-- Rendered dynamically from photoManager.js -->
+      </div>
+    </section>
+
+    <!-- LIGHTBOX DIALOG MODAL -->
+    <dialog id="photo-lightbox" class="photo-lightbox">
+      <div class="lightbox-wrapper">
+        <button id="lightbox-close-btn" class="lightbox-close-btn" aria-label="Close Lightbox">✕</button>
+        <button id="lightbox-prev-btn" class="lightbox-nav-btn prev" aria-label="Previous Photo">❮</button>
+        <button id="lightbox-next-btn" class="lightbox-nav-btn next" aria-label="Next Photo">❯</button>
+        
+        <div class="lightbox-content">
+          <div class="lightbox-image-frame">
+            <img id="lightbox-img" src="" alt="Neha Didi Memory">
+          </div>
+          <div class="lightbox-caption-box">
+            <span id="lightbox-tag" class="lightbox-tag">Memory</span>
+            <p id="lightbox-caption" class="lightbox-caption"></p>
+            <span id="lightbox-counter" class="lightbox-counter">1 / 13</span>
+          </div>
+        </div>
+      </div>
+    </dialog>
+
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 4: MEMORY TIMELINE WITH REAL PHOTOS -->
+    <!-- ========================================== -->
+    <section id="section-timeline" class="section-timeline hidden-chapter">
+      <div class="section-header">
+        <span class="section-badge">JOURNEY OF LOVE</span>
+        <h2 id="timeline-title" class="section-title">ताईसोबतच्या काही खास आठवणी 🌙</h2>
+        <p id="timeline-subtitle" class="section-subtitle">काही क्षण छोटे असतात, पण त्यांच्या आठवणी खूप मोठ्या असतात.</p>
+      </div>
+
+      <div class="timeline-wrapper">
+        <div class="timeline-line-bg">
+          <div id="timeline-progress-fill" class="timeline-progress-fill"></div>
+        </div>
+
+        <div id="timeline-nodes-container" class="timeline-nodes-container">
+          <!-- Rendered dynamically from photoManager.js & config.js via timeline.js -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 5: WHY YOU ARE SPECIAL (REAL PHOTOS) -->
+    <!-- ========================================== -->
+    <section id="section-special" class="section-special hidden-chapter">
+      <div class="section-header">
+        <span class="section-badge">SISTERHOOD</span>
+        <h2 id="special-title" class="section-title">तू माझ्यासाठी इतकी खास का आहेस? ❤️</h2>
+        <p class="section-subtitle">Tap each card to read a special message and view a memory photo</p>
+      </div>
+
+      <div id="special-cards-grid" class="special-cards-grid">
+        <!-- 6 3D Cards rendered dynamically with real photos via specialCards.js -->
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 6: BIRTHDAY WISHES                 -->
+    <!-- ========================================== -->
+    <section id="section-wishes" class="section-wishes hidden-chapter">
+      <div class="section-header">
+        <span class="section-badge">BLESSINGS & PRAYERS</span>
+        <h2 id="wishes-title" class="section-title">माझ्या तुझ्यासाठी काही इच्छा… 🌠</h2>
+        <p class="section-subtitle">May all these heartfelt wishes come true in your life</p>
+      </div>
+
+      <div id="wishes-container" class="wishes-container">
+        <!-- Floating wish items rendered dynamically -->
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 7: SECRET SURPRISE                -->
+    <!-- ========================================== -->
+    <section id="section-secret" class="section-secret hidden-chapter">
+      <div class="section-header">
+        <span class="section-badge">LOCKED SURPRISE</span>
+        <h2 id="secret-title" class="section-title">अजून एक छोटंसं surprise बाकी आहे… 🤫</h2>
+        <p class="section-subtitle">Unlock to reveal a special note from your brother</p>
+      </div>
+
+      <div class="secret-box-container">
+        <!-- LOCKED HEART CARD -->
+        <div id="secret-lock-card" class="secret-lock-card glass-panel">
+          <div class="lock-icon-wrapper">
+            <div class="glowing-keyhole">🔒</div>
+            <div class="lock-pulse-ring"></div>
+          </div>
+          <h3 class="lock-card-title">A Brother's Secret Heart Note</h3>
+          <p id="secret-hint-text" class="lock-card-desc">Unlock ❤️</p>
+          <button id="secret-unlock-btn" class="secret-unlock-btn">
+            <span>Unlock ❤️</span>
+            <div class="btn-sparkle-fx"></div>
+          </button>
+        </div>
+
+        <!-- UNLOCKED HANDWRITTEN NOTEBOOK MESSAGE -->
+        <div id="secret-message-box" class="secret-message-box hidden">
+          <div class="notebook-page">
+            <div class="notebook-pin">📍</div>
+            <h3 class="notebook-heading">माझ्या लाडक्या ताईसाठी… ❤️</h3>
+            <p id="secret-content-text" class="notebook-text">
+              <!-- Rendered via secretSurprise.js -->
+            </p>
+            <div class="notebook-footer">
+              <span class="notebook-heart-stamp">💖 Always & Forever</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ========================================== -->
+    <!-- CHAPTER 8: FINAL CINEMATIC CELEBRATION     -->
+    <!-- ========================================== -->
+    <section id="section-final" class="section-final hidden-chapter">
+      <!-- FIREWORKS & SPARKLERS CANVAS -->
+      <canvas id="climax-canvas"></canvas>
+
+      <div class="climax-content">
+        <!-- FINAL REAL PHOTO CINEMATIC PORTRAIT -->
+        <div class="final-portrait-wrapper clickable-photo">
+          <div class="final-portrait-glow"></div>
+          <img id="final-portrait-img" src="" alt="Happy Birthday Neha Didi Final Photo" />
+          <div class="final-portrait-crown">👑</div>
+        </div>
+
+        <h1 id="final-title-text" class="climax-title">Happy Birthday, Neha Didi ❤️</h1>
+
+        <div id="final-lines-container" class="climax-lines-container">
+          <!-- Rendered sequentially via climaxFireworks.js -->
+        </div>
+
+        <div class="climax-signature-box">
+          <span id="final-sign-text" class="climax-sign">तुझा भाऊ ❤️</span>
+        </div>
+
+        <div class="climax-replay-box">
+          <button id="replay-btn" class="replay-btn">
+            <span>Replay Surprise Story 🔄</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>

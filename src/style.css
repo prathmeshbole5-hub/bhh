@@ -1,0 +1,1881 @@
+/* ====================================================================
+   🎂 NEHA DIDI'S CINEMATIC BIRTHDAY SURPRISE — STYLESHEET 🎂
+   ==================================================================== */
+
+:root {
+  /* Color Palette */
+  --bg-dark: #0d0714;
+  --bg-card: rgba(25, 14, 38, 0.65);
+  --bg-card-hover: rgba(38, 20, 58, 0.85);
+  
+  --purple-primary: #8a2be2;
+  --purple-deep: #210c38;
+  --lavender: #c8a2c8;
+  --lavender-light: #e6d5e6;
+  --rose-pink: #e8a5b8;
+  --rose-glow: rgba(232, 165, 184, 0.35);
+  --gold-accent: #f4c430;
+  --gold-gradient: linear-gradient(135deg, #f4c430 0%, #fff2a3 50%, #e5a93c 100%);
+  
+  --paper-cream: #fdfbf7;
+  --paper-border: #e8dcc4;
+  --text-dark: #2c1a2e;
+  --text-light: #f5f0f8;
+  --text-muted: #bda3c7;
+  
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+
+  /* Typography */
+  --font-marathi-heading: 'Rozha One', 'Mukta', serif;
+  --font-marathi-body: 'Mukta', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+  --font-script: 'Great Vibes', cursive;
+
+  /* Transitions */
+  --ease-cinematic: cubic-bezier(0.25, 1, 0.5, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- BASE & RESET --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* RESPONSIVE OBJECT-FIT FOR REAL PHOTOS */
+img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.clickable-photo {
+  cursor: pointer;
+}
+
+.clickable-photo:hover img {
+  transform: scale(1.05);
+}
+
+/* --- AMBIENT CANVAS --- */
+#ambient-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* --- PRELOADER SCREEN --- */
+.loader-screen {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #210c38 0%, #0d0714 100%);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loader-screen.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.loader-heart-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.loader-heart {
+  font-size: 42px;
+  animation: heartPulse 1.4s infinite ease-in-out;
+}
+
+.loader-pulse-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px solid var(--rose-pink);
+  opacity: 0.6;
+  animation: ringExpand 2s infinite linear;
+}
+
+.loader-pulse-ring.delay {
+  animation-delay: 1s;
+}
+
+.loader-title {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.loader-sub {
+  font-size: 0.95rem;
+  color: var(--lavender);
+  margin-bottom: 24px;
+}
+
+.loader-bar-bg {
+  width: 220px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.loader-bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--gold-gradient);
+  border-radius: 99px;
+  transition: width 0.3s ease;
+}
+
+/* --- FLOATING MUSIC PLAYER --- */
+.audio-player {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 1000;
+}
+
+.audio-toggle-btn {
+  background: rgba(25, 14, 38, 0.85);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  color: var(--text-light);
+  padding: 10px 18px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.audio-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  border-color: var(--rose-pink);
+  background: rgba(45, 22, 68, 0.95);
+}
+
+.audio-icon {
+  font-size: 1.2rem;
+}
+
+.audio-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.sound-waves {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 14px;
+}
+
+.wave {
+  width: 3px;
+  background: var(--rose-pink);
+  border-radius: 3px;
+  height: 30%;
+  transition: height 0.2s ease;
+}
+
+.audio-toggle-btn.playing .wave {
+  animation: soundWave 1.2s infinite ease-in-out;
+}
+
+.audio-toggle-btn.playing .bar-1 { animation-delay: 0s; }
+.audio-toggle-btn.playing .bar-2 { animation-delay: 0.3s; }
+.audio-toggle-btn.playing .bar-3 { animation-delay: 0.6s; }
+.audio-toggle-btn.playing .bar-4 { animation-delay: 0.2s; }
+
+/* --- FLOATING MINIMAL NAVIGATION BAR --- */
+.floating-nav {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 900;
+  background: rgba(20, 10, 30, 0.8);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  border-radius: 99px;
+  padding: 6px 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.floating-nav.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -20px);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.nav-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 8px 14px;
+  border-radius: 99px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover, .nav-btn.active {
+  color: #ffffff;
+  background: rgba(232, 165, 184, 0.2);
+}
+
+.nav-btn.active {
+  box-shadow: 0 0 12px var(--rose-glow);
+}
+
+.nav-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 12px;
+  right: 12px;
+  height: 2px;
+  background: var(--gold-gradient);
+  border-radius: 99px;
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
+}
+
+/* --- MAIN CONTENT & SECTIONS --- */
+.main-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+}
+
+.hidden-chapter {
+  display: none;
+  opacity: 0;
+}
+
+.show-chapter {
+  display: block;
+  animation: chapterFadeIn 0.8s var(--ease-cinematic) forwards;
+}
+
+/* --- COMMON GLASS PANELS & BADGES --- */
+.glass-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  box-shadow: var(--glass-shadow);
+}
+
+.section-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 48px auto;
+  padding: 0 20px;
+}
+
+.section-badge, .tag-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(244, 196, 48, 0.15);
+  border: 1px solid rgba(244, 196, 48, 0.4);
+  color: var(--gold-accent);
+  border-radius: 99px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+}
+
+.section-title {
+  font-family: var(--font-marathi-heading);
+  font-size: 2.2rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.section-subtitle {
+  font-size: 1rem;
+  color: var(--lavender);
+}
+
+
+/* ====================================================================
+   CHAPTER 1: THE MYSTERIOUS 3D ENVELOPE & FLOATING SCATTERED PHOTOS
+   ==================================================================== */
+.section-envelope {
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 20px 30px 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.spotlight-glow {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 550px;
+  height: 550px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.3) 0%, rgba(232, 165, 184, 0.15) 50%, transparent 70%);
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+/* FLOATING SCATTERED REAL PHOTO SCRAPBOOK CARDS */
+.envelope-scattered-photos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+}
+
+.scattered-photo-card {
+  position: absolute;
+  pointer-events: auto;
+  background: #ffffff;
+  padding: 8px 8px 14px 8px;
+  border-radius: 10px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 15px rgba(244, 196, 48, 0.25);
+  width: 150px;
+  text-align: center;
+  transition: transform 0.4s var(--ease-bounce), box-shadow 0.4s ease, z-index 0.3s ease;
+  cursor: pointer;
+}
+
+.scattered-photo-card:hover {
+  transform: scale(1.18) rotate(0deg) !important;
+  z-index: 99 !important;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8), 0 0 30px rgba(232, 165, 184, 0.6);
+}
+
+.scattered-tape {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.2rem;
+}
+
+.scattered-img-box {
+  width: 100%;
+  height: 120px;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-bottom: 6px;
+}
+
+.scattered-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+
+.scattered-caption {
+  font-family: var(--font-marathi-heading);
+  font-size: 0.8rem;
+  color: #2c1a2e;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Desktop Positions around Envelope */
+.scattered-photo-card.pos-top-left { top: 8%; left: 8%; }
+.scattered-photo-card.pos-top-right { top: 10%; right: 8%; }
+.scattered-photo-card.pos-bottom-left { bottom: 10%; left: 10%; }
+.scattered-photo-card.pos-bottom-right { bottom: 12%; right: 10%; }
+.scattered-photo-card.pos-center-left { top: 45%; left: 4%; }
+.scattered-photo-card.pos-center-right { top: 43%; right: 4%; }
+
+@keyframes floatOne {
+  0%, 100% { transform: translateY(0) rotate(-12deg); }
+  50% { transform: translateY(-12px) rotate(-9deg); }
+}
+
+@keyframes floatTwo {
+  0%, 100% { transform: translateY(0) rotate(10deg); }
+  50% { transform: translateY(-14px) rotate(13deg); }
+}
+
+@keyframes floatThree {
+  0%, 100% { transform: translateY(0) rotate(8deg); }
+  50% { transform: translateY(-10px) rotate(5deg); }
+}
+
+@keyframes floatFour {
+  0%, 100% { transform: translateY(0) rotate(-14deg); }
+  50% { transform: translateY(-12px) rotate(-11deg); }
+}
+
+.envelope-scene-header {
+  text-align: center;
+  z-index: 10;
+}
+
+.envelope-top-text {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-style: italic;
+  color: var(--lavender-light);
+  margin-top: 8px;
+  text-shadow: 0 4px 15px rgba(0, 0, 0, 0.6);
+}
+
+.envelope-scene-footer {
+  text-align: center;
+  z-index: 10;
+}
+
+.envelope-bottom-text {
+  font-size: 1.05rem;
+  color: var(--rose-pink);
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* 3D ENVELOPE WRAPPER & TRANSFORM */
+.envelope-wrapper {
+  perspective: 1200px;
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
+  z-index: 20;
+}
+
+.envelope-3d {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #2a153b;
+  border-radius: 12px;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(138, 43, 226, 0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out;
+  animation: envelopeFloat 4s ease-in-out infinite;
+}
+
+.env-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1d0c2c 0%, #2e1445 100%);
+  border-radius: 12px;
+  border: 1px stroke rgba(244, 196, 48, 0.3);
+}
+
+.env-inside-glow {
+  position: absolute;
+  inset: 20px;
+  background: radial-gradient(circle, rgba(244, 196, 48, 0.9) 0%, rgba(232, 165, 184, 0.4) 40%, transparent 80%);
+  opacity: 0;
+  border-radius: 50%;
+  filter: blur(20px);
+  transition: opacity 0.8s ease;
+  z-index: 2;
+}
+
+.env-flap-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(135deg, #3d1b54 0%, #28103a 100%);
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+  z-index: 4;
+  border-radius: 12px 0 0 12px;
+}
+
+.env-flap-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 50%;
+  background: linear-gradient(225deg, #3a1950 0%, #250f36 100%);
+  clip-path: polygon(100% 0, 0 50%, 100% 100%);
+  z-index: 4;
+  border-radius: 0 12px 12px 0;
+}
+
+.env-flap-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(0deg, #441d5e 0%, #2d1240 100%);
+  clip-path: polygon(0 100%, 50% 0, 100% 100%);
+  z-index: 5;
+  border-radius: 0 0 12px 12px;
+  border-bottom: 1px stroke rgba(244, 196, 48, 0.4);
+}
+
+.env-top-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  z-index: 6;
+  transform-origin: top center;
+  transition: transform 1s var(--ease-cinematic);
+  transform-style: preserve-3d;
+}
+
+.flap-triangle {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #522473 0%, #36154d 100%);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* WAX SEAL HEART BUTTON */
+.envelope-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  width: 72px;
+  height: 72px;
+  z-index: 7;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s var(--ease-bounce);
+}
+
+.envelope-seal:hover {
+  transform: translate(-50%, -20%) scale(1.15) rotate(5deg);
+}
+
+.seal-wax-ring {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, #cc0044 0%, #80002a 100%);
+  border: 2px stroke #f4c430;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 15px rgba(244, 196, 48, 0.5);
+}
+
+.seal-heart-icon {
+  position: relative;
+  z-index: 2;
+  font-size: 32px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.seal-ripple {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  border: 1.5px dashed var(--gold-accent);
+  opacity: 0.6;
+  animation: spinSlow 12s linear infinite;
+}
+
+/* FRONT ENVELOPE LABEL */
+.envelope-front-label {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  text-align: center;
+  pointer-events: none;
+  background: rgba(13, 7, 20, 0.6);
+  padding: 6px 18px;
+  border-radius: 99px;
+  border: 1px stroke rgba(244, 196, 48, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.label-to {
+  font-size: 0.75rem;
+  color: var(--lavender);
+  margin-right: 6px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.label-name {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.1rem;
+  color: var(--gold-accent);
+  font-weight: 700;
+}
+
+/* SEAL INTERACTIVE HINT */
+.seal-hint {
+  position: absolute;
+  bottom: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-size: 0.85rem;
+  color: var(--lavender-light);
+  background: rgba(25, 14, 38, 0.9);
+  padding: 6px 14px;
+  border-radius: 99px;
+  border: 1px stroke var(--glass-border);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  animation: pulseGlow 2s infinite ease-in-out;
+}
+
+/* RISING PAPER LETTER */
+.envelope-letter {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  right: 15px;
+  bottom: 10px;
+  background: var(--paper-cream);
+  border-radius: 12px;
+  z-index: 3;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  transform: translateY(0);
+  transition: transform 1.2s var(--ease-cinematic), top 1.2s var(--ease-cinematic), height 1.2s var(--ease-cinematic), box-shadow 0.8s ease;
+  overflow: hidden;
+  color: var(--text-dark);
+}
+
+.envelope-letter.expanded {
+  position: fixed;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 90vw;
+  max-width: 680px;
+  height: 84vh;
+  max-height: 740px;
+  z-index: 999;
+  border-radius: 20px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 0 100vw rgba(13, 7, 20, 0.85);
+  border: 2px stroke var(--paper-border);
+}
+
+.letter-inner {
+  padding: 36px 30px;
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.letter-header-decor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #b58934;
+}
+
+.letter-date {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.letter-greeting {
+  font-family: var(--font-marathi-heading);
+  font-size: 2.2rem;
+  color: #611833;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.letter-body {
+  font-family: var(--font-marathi-body);
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #2c1a2e;
+  flex: 1;
+}
+
+.letter-paragraph {
+  margin-bottom: 18px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.letter-paragraph.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.letter-footer {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.letter-next-btn {
+  background: linear-gradient(135deg, #7a1c43 0%, #a82e5c 100%);
+  color: #ffffff;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 99px;
+  font-family: var(--font-marathi-heading);
+  font-size: 1.2rem;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(122, 28, 67, 0.4);
+  transition: transform 0.3s var(--ease-bounce), opacity 0.5s ease;
+}
+
+.letter-next-btn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 14px 30px rgba(122, 28, 67, 0.6);
+}
+
+.letter-next-btn.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* ====================================================================
+   CHAPTER 2: STORY INTRO & HERO REAL PORTRAIT
+   ==================================================================== */
+.section-story {
+  padding: 100px 20px 60px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.chapter-container {
+  max-width: 760px;
+  width: 100%;
+}
+
+/* HERO REAL PORTRAIT FRAME */
+.hero-portrait-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  margin: 0 auto 40px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-bg-blur {
+  position: absolute;
+  inset: -20px;
+  border-radius: 30px;
+  overflow: hidden;
+  filter: blur(25px);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+.hero-bg-blur img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-portrait-frame {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 480px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 2px stroke rgba(244, 196, 48, 0.4);
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+}
+
+.hero-portrait-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.6s var(--ease-cinematic);
+}
+
+.hero-portrait-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 7, 20, 0.85);
+  border: 1px stroke var(--gold-accent);
+  backdrop-filter: blur(10px);
+  padding: 8px 24px;
+  border-radius: 99px;
+  font-family: var(--font-marathi-heading);
+  font-size: 1.1rem;
+  color: var(--gold-accent);
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+.story-card {
+  padding: 48px 36px;
+  text-align: center;
+  border: 1px stroke rgba(232, 165, 184, 0.2);
+}
+
+.chapter-number {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--rose-pink);
+  margin-bottom: 16px;
+  display: block;
+}
+
+.story-headline {
+  font-family: var(--font-marathi-heading);
+  font-size: 2rem;
+  color: var(--text-light);
+  margin-bottom: 12px;
+}
+
+.story-subheadline {
+  font-size: 1.25rem;
+  color: var(--lavender-light);
+  margin-bottom: 24px;
+}
+
+.divider-line {
+  margin: 20px auto;
+  width: 100px;
+  height: 1px;
+  background: var(--gold-gradient);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider-line span {
+  background: var(--bg-dark);
+  padding: 0 10px;
+  font-size: 1.1rem;
+}
+
+.story-callout {
+  font-size: 1.1rem;
+  color: var(--gold-accent);
+  font-weight: 600;
+}
+
+
+/* ====================================================================
+   CHAPTER 3: EDITORIAL & POLAROID MEMORY GALLERY (REAL PHOTOS)
+   ==================================================================== */
+.section-memories {
+  padding: 60px 20px 100px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.photo-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 24px;
+}
+
+/* Memory Card Styling */
+.memory-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease-cinematic), box-shadow 0.4s ease;
+  background: #190c29;
+}
+
+.memory-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(232, 165, 184, 0.3);
+}
+
+/* Card Types */
+.memory-card.type-featured {
+  grid-column: span 8;
+  grid-row: span 2;
+  min-height: 480px;
+}
+
+.memory-card.type-polaroid {
+  grid-column: span 4;
+  background: #ffffff;
+  padding: 16px 16px 24px 16px;
+  color: var(--text-dark);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* SCATTERED SCRAPBOOK MEMORY CARDS */
+.memory-card.type-rotated {
+  grid-column: span 4;
+  transform: rotate(-3deg);
+  background: #ffffff;
+  padding: 14px 14px 22px 14px;
+}
+
+.memory-card.type-rotated:hover {
+  transform: rotate(0deg) translateY(-8px) scale(1.03);
+}
+
+.memory-card.type-wide {
+  grid-column: span 12;
+  min-height: 380px;
+}
+
+.memory-img-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 260px;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.memory-card.type-polaroid .memory-img-wrapper,
+.memory-card.type-rotated .memory-img-wrapper {
+  height: 240px;
+}
+
+.memory-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.6s var(--ease-cinematic);
+}
+
+.memory-card:hover .memory-img {
+  transform: scale(1.08);
+}
+
+.memory-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(13, 7, 20, 0.9) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px;
+}
+
+.memory-card.type-polaroid .memory-overlay,
+.memory-card.type-rotated .memory-overlay {
+  position: relative;
+  background: transparent;
+  padding: 14px 0 0 0;
+  color: var(--text-dark);
+}
+
+.memory-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--gold-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.memory-card.type-polaroid .memory-tag,
+.memory-card.type-rotated .memory-tag {
+  color: #992b52;
+}
+
+.memory-caption {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.25rem;
+  color: #ffffff;
+}
+
+.memory-card.type-polaroid .memory-caption,
+.memory-card.type-rotated .memory-caption {
+  color: #2c1a2e;
+  font-size: 1.1rem;
+}
+
+/* LIGHTBOX MODAL (REAL PHOTO FULLSCREEN) */
+.photo-lightbox {
+  padding: 0;
+  border: none;
+  background: transparent;
+  max-width: 100vw;
+  max-height: 100vh;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  margin: auto;
+}
+
+.photo-lightbox::backdrop {
+  background: rgba(13, 7, 20, 0.94);
+  backdrop-filter: blur(20px);
+  transition: opacity 0.4s ease;
+}
+
+.lightbox-wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 40px 20px;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px stroke var(--glass-border);
+  color: #ffffff;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.lightbox-close-btn:hover {
+  background: rgba(232, 165, 184, 0.35);
+}
+
+.lightbox-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px stroke var(--glass-border);
+  color: #ffffff;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.lightbox-nav-btn.prev { left: 24px; }
+.lightbox-nav-btn.next { right: 24px; }
+
+.lightbox-nav-btn:hover {
+  background: rgba(232, 165, 184, 0.35);
+}
+
+.lightbox-content {
+  max-width: 920px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lightbox-image-frame {
+  max-height: 72vh;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.85);
+  border: 1px stroke var(--glass-border);
+}
+
+.lightbox-image-frame img {
+  max-height: 72vh;
+  width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.lightbox-caption-box {
+  margin-top: 20px;
+  text-align: center;
+  background: rgba(25, 14, 38, 0.85);
+  padding: 16px 28px;
+  border-radius: 99px;
+  border: 1px stroke var(--glass-border);
+}
+
+.lightbox-tag {
+  font-size: 0.75rem;
+  color: var(--gold-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.lightbox-caption {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.3rem;
+  color: #ffffff;
+  margin: 4px 0;
+}
+
+.lightbox-counter {
+  font-size: 0.8rem;
+  color: var(--lavender);
+}
+
+
+/* ====================================================================
+   CHAPTER 4: MEMORY TIMELINE WITH REAL PHOTOS
+   ==================================================================== */
+.section-timeline {
+  padding: 80px 20px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.timeline-wrapper {
+  position: relative;
+  padding: 20px 0;
+}
+
+.timeline-line-bg {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(-50%);
+  border-radius: 99px;
+}
+
+.timeline-progress-fill {
+  width: 100%;
+  height: 0%;
+  background: var(--gold-gradient);
+  border-radius: 99px;
+  transition: height 0.2s linear;
+}
+
+.timeline-nodes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.timeline-node {
+  position: relative;
+  display: flex;
+  width: 100%;
+}
+
+.timeline-node:nth-child(odd) {
+  justify-content: flex-start;
+  padding-right: 50%;
+}
+
+.timeline-node:nth-child(even) {
+  justify-content: flex-end;
+  padding-left: 50%;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: 50%;
+  top: 24px;
+  transform: translate(-50%, -50%);
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--bg-dark);
+  border: 3px stroke var(--gold-accent);
+  box-shadow: 0 0 15px var(--gold-accent);
+  z-index: 5;
+}
+
+.timeline-card {
+  padding: 28px;
+  margin: 0 24px;
+  width: calc(100% - 48px);
+  position: relative;
+}
+
+.timeline-year {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--rose-pink);
+  margin-bottom: 8px;
+}
+
+.timeline-card-title {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.4rem;
+  color: var(--text-light);
+  margin-bottom: 10px;
+}
+
+.timeline-card-desc {
+  font-family: var(--font-marathi-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--lavender-light);
+  margin-bottom: 16px;
+}
+
+.timeline-photo-slot {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px stroke var(--glass-border);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.timeline-photo-slot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.5s ease;
+}
+
+
+/* ====================================================================
+   CHAPTER 5: "WHY YOU ARE SPECIAL" 3D CARDS WITH REAL PHOTOS
+   ==================================================================== */
+.section-special {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.special-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.special-card {
+  perspective: 1000px;
+  height: 310px;
+  cursor: pointer;
+}
+
+.special-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s var(--ease-bounce);
+}
+
+.special-card.flipped .special-card-inner {
+  transform: rotateY(180deg);
+}
+
+.special-card-front, .special-card-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  border-radius: 20px;
+}
+
+.special-card-front {
+  background: var(--bg-card);
+  border: 1px stroke var(--glass-border);
+}
+
+.special-card-photo-wrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px stroke var(--gold-accent);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+  margin-bottom: 8px;
+}
+
+.special-card-photo-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.special-card-back {
+  background: linear-gradient(135deg, #3d1547 0%, #1c0a29 100%);
+  border: 1px stroke var(--rose-pink);
+  transform: rotateY(180deg);
+}
+
+.special-icon {
+  font-size: 2.2rem;
+}
+
+.special-card-title {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.4rem;
+  color: var(--text-light);
+  margin-bottom: 4px;
+}
+
+.special-card-short {
+  font-size: 0.9rem;
+  color: var(--lavender);
+}
+
+.special-card-full {
+  font-family: var(--font-marathi-body);
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--lavender-light);
+}
+
+.tap-hint {
+  font-size: 0.75rem;
+  color: var(--gold-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+
+/* ====================================================================
+   CHAPTER 6: BIRTHDAY WISHES
+   ==================================================================== */
+.section-wishes {
+  padding: 80px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.wishes-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 18px;
+}
+
+.wish-chip {
+  background: var(--bg-card);
+  border: 1px stroke var(--glass-border);
+  backdrop-filter: blur(12px);
+  padding: 16px 28px;
+  border-radius: 99px;
+  font-family: var(--font-marathi-heading);
+  font-size: 1.2rem;
+  color: var(--text-light);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  transition: transform 0.3s var(--ease-bounce), border-color 0.3s ease;
+  cursor: default;
+}
+
+.wish-chip:hover {
+  transform: scale(1.08) translateY(-4px);
+  border-color: var(--gold-accent);
+  box-shadow: 0 15px 30px rgba(244, 196, 48, 0.2);
+}
+
+
+/* ====================================================================
+   CHAPTER 7: SECRET SURPRISE
+   ==================================================================== */
+.section-secret {
+  padding: 80px 20px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.secret-box-container {
+  position: relative;
+  min-height: 320px;
+}
+
+.secret-lock-card {
+  padding: 48px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lock-icon-wrapper {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.glowing-keyhole {
+  font-size: 3.5rem;
+  filter: drop-shadow(0 0 15px var(--gold-accent));
+}
+
+.lock-pulse-ring {
+  position: absolute;
+  inset: -10px;
+  border-radius: 50%;
+  border: 2px stroke var(--gold-accent);
+  animation: ringExpand 2.5s infinite linear;
+}
+
+.lock-card-title {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  color: var(--text-light);
+  margin-bottom: 8px;
+}
+
+.lock-card-desc {
+  font-size: 0.95rem;
+  color: var(--lavender);
+  margin-bottom: 24px;
+}
+
+.secret-unlock-btn {
+  background: var(--gold-gradient);
+  color: var(--text-dark);
+  font-weight: 700;
+  border: none;
+  padding: 14px 36px;
+  border-radius: 99px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  box-shadow: 0 10px 25px rgba(244, 196, 48, 0.4);
+  transition: transform 0.3s var(--ease-bounce);
+}
+
+.secret-unlock-btn:hover {
+  transform: scale(1.06);
+}
+
+/* UNLOCKED NOTEBOOK PAGE */
+.secret-message-box {
+  width: 100%;
+}
+
+.notebook-page {
+  background: #fffdf5;
+  color: var(--text-dark);
+  border-radius: 16px;
+  padding: 40px 32px;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.6);
+  position: relative;
+  border-left: 6px stroke #d93868;
+}
+
+.notebook-pin {
+  position: absolute;
+  top: -16px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 1.8rem;
+}
+
+.notebook-heading {
+  font-family: var(--font-marathi-heading);
+  font-size: 1.8rem;
+  color: #7a1438;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.notebook-text {
+  font-family: var(--font-marathi-body);
+  font-size: 1.25rem;
+  line-height: 1.9;
+  color: #1a0a1c;
+  margin-bottom: 24px;
+}
+
+.notebook-footer {
+  text-align: right;
+  font-family: var(--font-script);
+  font-size: 1.8rem;
+  color: #b51c54;
+}
+
+
+/* ====================================================================
+   CHAPTER 8: FINAL CINEMATIC REAL PORTRAIT & CELEBRATION
+   ==================================================================== */
+.section-final {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px;
+  overflow: hidden;
+  background: radial-gradient(circle at center, #1b072e 0%, #050208 100%);
+}
+
+#climax-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.climax-content {
+  position: relative;
+  z-index: 10;
+  max-width: 750px;
+}
+
+/* FINAL REAL PHOTO CINEMATIC PORTRAIT */
+.final-portrait-wrapper {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 24px auto;
+  border-radius: 50%;
+}
+
+.final-portrait-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--gold-accent) 0%, var(--rose-pink) 60%, transparent 100%);
+  filter: blur(12px);
+  opacity: 0.8;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+.final-portrait-wrapper img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center 20%;
+  border: 3px stroke var(--gold-accent);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.7);
+}
+
+.final-portrait-crown {
+  position: absolute;
+  top: -24px;
+  right: 10px;
+  z-index: 3;
+  font-size: 2.4rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+}
+
+.climax-title {
+  font-family: var(--font-marathi-heading);
+  font-size: 3.2rem;
+  color: #ffffff;
+  text-shadow: 0 0 30px var(--rose-pink), 0 0 60px var(--purple-primary);
+  margin-bottom: 28px;
+  line-height: 1.2;
+}
+
+.climax-lines-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.climax-line {
+  font-family: var(--font-marathi-body);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--gold-accent);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.climax-line.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.climax-signature-box {
+  margin-bottom: 36px;
+}
+
+.climax-sign {
+  font-family: var(--font-marathi-heading);
+  font-size: 2.2rem;
+  color: var(--rose-pink);
+  display: inline-block;
+  border-bottom: 2px stroke var(--rose-pink);
+  padding-bottom: 4px;
+}
+
+.replay-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px stroke var(--glass-border);
+  color: var(--text-light);
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.replay-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+
+/* ====================================================================
+   KEYFRAME ANIMATIONS
+   ==================================================================== */
+@keyframes heartPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.18); }
+}
+
+@keyframes ringExpand {
+  0% { transform: scale(0.8); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+@keyframes soundWave {
+  0%, 100% { height: 25%; }
+  50% { height: 95%; }
+}
+
+@keyframes envelopeFloat {
+  0%, 100% { transform: translateY(0) rotateX(0deg); }
+  50% { transform: translateY(-10px) rotateX(2deg); }
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(1); }
+  50% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+
+@keyframes chapterFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ====================================================================
+   RESPONSIVE DESIGN (MOBILE & TABLET ULTRA-CLEAN OPTIMIZATIONS)
+   ==================================================================== */
+@media (max-width: 900px) {
+  .photo-gallery-grid {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .memory-card.type-featured { grid-column: span 6; min-height: 380px; }
+  .memory-card.type-polaroid { grid-column: span 3; }
+  .memory-card.type-rotated { grid-column: span 3; }
+  .memory-card.type-wide { grid-column: span 6; min-height: 280px; }
+
+  .scattered-photo-card { width: 120px; }
+  .scattered-img-box { height: 95px; }
+}
+
+@media (max-width: 768px) {
+  .section-envelope {
+    padding: 30px 12px 20px 12px;
+  }
+
+  .envelope-wrapper {
+    max-width: 320px;
+    height: 220px;
+  }
+  .seal-heart-icon { font-size: 24px; }
+  .envelope-seal { width: 54px; height: 54px; }
+  .envelope-top-text { font-size: 1.35rem; }
+  .envelope-bottom-text { font-size: 0.95rem; }
+
+  /* SCATTERED REAL PHOTOS AROUND ENVELOPE (MOBILE ULTRA-CLEAN POSITIONS) */
+  .scattered-photo-card {
+    width: 90px;
+    padding: 6px 6px 12px 6px;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+  }
+  .scattered-img-box { height: 70px; }
+  .scattered-caption { font-size: 0.65rem; }
+  .scattered-tape { font-size: 1rem; top: -10px; }
+
+  .scattered-photo-card.pos-top-left { top: 4%; left: 3%; }
+  .scattered-photo-card.pos-top-right { top: 5%; right: 3%; }
+  .scattered-photo-card.pos-bottom-left { bottom: 5%; left: 3%; }
+  .scattered-photo-card.pos-bottom-right { bottom: 6%; right: 3%; }
+  .scattered-photo-card.pos-center-left { top: 44%; left: 1%; }
+  .scattered-photo-card.pos-center-right { top: 42%; right: 1%; }
+  
+  .letter-greeting { font-size: 1.7rem; }
+  .letter-body { font-size: 1rem; line-height: 1.7; }
+  .envelope-letter.expanded {
+    width: 95vw;
+    height: 88vh;
+    padding: 16px 12px;
+  }
+  .letter-inner { padding: 24px 16px; }
+  
+  .hero-portrait-frame { height: 340px; }
+  .story-headline { font-size: 1.6rem; }
+  .story-card { padding: 32px 20px; }
+
+  .photo-gallery-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  .memory-card.type-featured,
+  .memory-card.type-polaroid,
+  .memory-card.type-rotated,
+  .memory-card.type-wide {
+    grid-column: span 1;
+    min-height: auto;
+  }
+  .memory-card.type-polaroid .memory-img-wrapper,
+  .memory-card.type-rotated .memory-img-wrapper {
+    height: 220px;
+  }
+  
+  /* Vertical Timeline Mobile adjustment */
+  .timeline-line-bg { left: 18px; }
+  .timeline-dot { left: 18px; }
+  .timeline-node:nth-child(odd),
+  .timeline-node:nth-child(even) {
+    justify-content: flex-start;
+    padding-left: 42px;
+    padding-right: 0;
+  }
+  .timeline-card {
+    width: 100%;
+    margin: 0;
+    padding: 20px;
+  }
+  .timeline-photo-slot { height: 160px; }
+
+  .special-cards-grid { grid-template-columns: 1fr; }
+  .special-card { height: 290px; }
+
+  .climax-title { font-size: 2rem; }
+  .climax-line { font-size: 1.2rem; }
+  .climax-sign { font-size: 1.6rem; }
+  .final-portrait-wrapper { width: 140px; height: 140px; }
+  
+  .floating-nav {
+    top: auto;
+    bottom: 14px;
+    left: 14px;
+    transform: none;
+    padding: 4px 8px;
+  }
+  .floating-nav.hidden {
+    transform: translateY(20px);
+  }
+  .nav-btn { padding: 6px 10px; }
+  .nav-label { display: none; }
+}
+
+@media (max-width: 480px) {
+  .envelope-wrapper {
+    max-width: 290px;
+    height: 190px;
+  }
+  .scattered-photo-card {
+    width: 75px;
+    padding: 4px 4px 8px 4px;
+  }
+  .scattered-img-box { height: 55px; }
+  .scattered-caption { font-size: 0.6rem; }
+}
