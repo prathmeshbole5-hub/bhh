@@ -14,28 +14,27 @@ import { initSecretSurprise } from './secretSurprise.js';
 import { initClimaxFireworks } from './climaxFireworks.js';
 import { initNavigation } from './navigation.js';
 
-document.addEventListener('DOMContentLoaded', () => {
-  // Preloader progress bar
+function initApp() {
   const loaderBar = document.getElementById('loader-bar-fill');
   const loaderScreen = document.getElementById('loader-screen');
 
   let progress = 0;
   const interval = setInterval(() => {
-    progress += Math.random() * 25 + 15;
+    progress += Math.random() * 35 + 20;
     if (loaderBar) loaderBar.style.width = `${Math.min(progress, 100)}%`;
 
     if (progress >= 100) {
       clearInterval(interval);
-      setTimeout(() => {
-        if (loaderScreen) loaderScreen.classList.add('fade-out');
+      if (loaderScreen) {
+        loaderScreen.classList.add('fade-out');
         setTimeout(() => {
-          if (loaderScreen) loaderScreen.style.display = 'none';
-        }, 800);
-      }, 400);
+          loaderScreen.style.display = 'none';
+        }, 500);
+      }
     }
-  }, 180);
+  }, 80);
 
-  // Initialize modules
+  // Initialize all experience modules
   initAmbientCanvas();
   initAudioPlayer();
   initEnvelope3D();
@@ -46,4 +45,10 @@ document.addEventListener('DOMContentLoaded', () => {
   initSecretSurprise();
   initClimaxFireworks();
   initNavigation();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initApp);
+} else {
+  initApp();
+}

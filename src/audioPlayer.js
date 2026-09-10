@@ -1,6 +1,7 @@
 /**
- * AUDIO PLAYER & SOOTHING BIRTHDAY MUSIC SYNTHESIZER
- * Background music manager with auto-start on first user tap/click.
+ * 🎵 REAL BIRTHDAY AUDIO PLAYER & MUSIC BOX SYNTHESIZER
+ * Plays real Happy Birthday audio track from /assets/birthday-song.mp3
+ * with automatic continuous looping and user interaction auto-start.
  */
 
 import { config } from '../config.js';
@@ -11,25 +12,33 @@ export function initAudioPlayer() {
   const audioIcon = document.getElementById('audio-icon');
 
   let isPlaying = false;
-  let audioEl = new Audio(config.musicPath);
+  
+  // Try loading real generated WAV / MP3 audio file
+  let audioEl = new Audio('/assets/birthday-song.wav');
   audioEl.loop = true;
-  audioEl.volume = 0.5;
+  audioEl.volume = 0.65;
 
   let synthContext = null;
   let synthInterval = null;
   let useSynthFallback = false;
 
   audioEl.addEventListener('error', () => {
-    console.log("Custom MP3 not found. Using built-in Web Audio birthday chime synth.");
-    useSynthFallback = true;
+    // Fallback to MP3 path
+    audioEl = new Audio(config.musicPath || '/assets/birthday-song.mp3');
+    audioEl.loop = true;
+    audioEl.volume = 0.65;
+    audioEl.addEventListener('error', () => {
+      console.log("Audio file error. Using Web Audio chime synth fallback.");
+      useSynthFallback = true;
+    });
   });
 
-  // Soft Web Audio API Birthday Lullaby Chime Melody
+  // Happy Birthday melody frequencies
   const birthdayMelody = [
-    264, 264, 297, 264, 352, 330,        // Happy Birthday to You
-    264, 264, 297, 264, 396, 352,        // Happy Birthday to You
-    264, 264, 528, 440, 352, 330, 297,   // Happy Birthday Dear Neha Didi
-    466, 466, 440, 352, 396, 352         // Happy Birthday to You
+    264.63, 264.63, 297.00, 264.63, 352.00, 330.00,        // Happy Birthday to You
+    264.63, 264.63, 297.00, 264.63, 396.00, 352.00,        // Happy Birthday to You
+    264.63, 264.63, 528.00, 440.00, 352.00, 330.00, 297.00,   // Happy Birthday Dear Neha Didi
+    466.16, 466.16, 440.00, 352.00, 396.00, 352.00         // Happy Birthday to You
   ];
   let noteIndex = 0;
 
@@ -51,9 +60,8 @@ export function initAudioPlayer() {
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, synthContext.currentTime);
 
-      // Gentle chime envelope
       gain.gain.setValueAtTime(0.01, synthContext.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.12, synthContext.currentTime + 0.08);
+      gain.gain.exponentialRampToValueAtTime(0.15, synthContext.currentTime + 0.08);
       gain.gain.exponentialRampToValueAtTime(0.001, synthContext.currentTime + 0.7);
 
       osc.connect(gain);
@@ -62,7 +70,7 @@ export function initAudioPlayer() {
       osc.start();
       osc.stop(synthContext.currentTime + 0.75);
     } catch (e) {
-      console.warn("Synth playback error:", e);
+      console.warn("Synth error:", e);
     }
   }
 
@@ -76,7 +84,7 @@ export function initAudioPlayer() {
       }
     } else {
       audioEl.play().catch(err => {
-        console.warn("MP3 blocked, switching to synth:", err);
+        console.warn("Audio element play error, using synth fallback:", err);
         useSynthFallback = true;
         playSynthMelody();
         if (!synthInterval) {
@@ -104,7 +112,6 @@ export function initAudioPlayer() {
     if (audioIcon) audioIcon.textContent = "🎵";
   }
 
-  // Toggle button click handler
   toggleBtn?.addEventListener('click', (e) => {
     e.stopPropagation();
     if (isPlaying) {
@@ -114,17 +121,13 @@ export function initAudioPlayer() {
     }
   });
 
-  // AUTO-PLAY MUSIC ON FIRST CLICK/TAP ANYWHERE ON SITE
-  function handleFirstUserGesture() {
-    if (!isPlaying) {
-      startMusic();
-    }
-    window.removeEventListener('click', handleFirstUserGesture);
-    window.removeEventListener('touchstart', handleFirstUserGesture);
+  // Start music automatically on any click or touch gesture
+  function handleGesture() {
+    startMusic();
   }
 
-  window.addEventListener('click', handleFirstUserGesture, { once: true });
-  window.addEventListener('touchstart', handleFirstUserGesture, { once: true });
+  window.addEventListener('click', handleGesture, { once: true });
+  window.addEventListener('touchstart', handleGesture, { once: true });
 
   return { startMusic, pauseMusic };
 }
