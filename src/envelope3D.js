@@ -86,8 +86,15 @@ export function initEnvelope3D() {
   window.addEventListener('touchmove', handleTilt, { passive: true });
   window.addEventListener('touchend', resetTilt);
 
-  // CINEMATIC OPENING SEQUENCE
-  seal?.addEventListener('click', openEnvelopeSequence);
+  // CINEMATIC OPENING SEQUENCE — ONE CLICK ANYWHERE ON ENVELOPE
+  const clickTargets = [seal, envWrapper, env3D, hint];
+  clickTargets.forEach(target => {
+    target?.addEventListener('click', (e) => {
+      // Prevent double triggers if bubbling
+      e.stopPropagation();
+      openEnvelopeSequence();
+    });
+  });
 
   function openEnvelopeSequence() {
     if (isOpen) return;

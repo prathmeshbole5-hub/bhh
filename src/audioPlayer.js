@@ -129,5 +129,8 @@ export function initAudioPlayer() {
   window.addEventListener('click', handleGesture, { once: true });
   window.addEventListener('touchstart', handleGesture, { once: true });
 
+  window.__startBirthdayMusic = startMusic;
+
   return { startMusic, pauseMusic };
 }
+
